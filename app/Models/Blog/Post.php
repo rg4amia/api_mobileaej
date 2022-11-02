@@ -13,10 +13,10 @@ class Post extends Model
 
 
     public function featured_images() {
-        return $this->belongsTo(File::class,'attachment_id','id');
+        return $this->belongsTo('App\Models\File','attachment_id','id');
     }
 
     public function categories() {
-        return $this->belongsToMany(Category::class,'rainlab_blog_posts_categories', 'post_id', 'category_id');
+        return $this->belongsToMany('App\Models\Category','rainlab_blog_posts_categories', 'post_id', 'category_id');
     }
 }
