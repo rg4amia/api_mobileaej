@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProjetFinancement extends Model
 {
-    use HasFactory;
     protected $table = 'digit_projetfinancement_projetfinancement';
 
     protected $fillable = [
@@ -46,67 +44,67 @@ class ProjetFinancement extends Model
     }
 
     public function demandeur() {
-        return $this->belongsTo(DemandeurEmploi::class,'demandeur_id','id');
+        return $this->belongsTo('App\Models\DemandeurEmploi','demandeur_id','id');
     }
 
     public function secteuractivite() {
-        return $this->belongsTo(SecteurActivite::class,'secteuractivite_id','id');
+        return $this->belongsTo('App\Models\SecteurActivite','secteuractivite_id','id');
     }
 
     public function region() {
-        return $this->belongsTo(Region::class,'region_id','id');
+        return $this->belongsTo('App\Models\Region','region_id','id');
     }
 
     public function formejuridique() {
-        return $this->belongsTo(FormeJuridique::class,'formejuridique_id','id');
+        return $this->belongsTo('App\Models\FormeJuridique','formejuridique_id','id');
     }
 
     public function ville() {
-        return $this->belongsTo(Ville::class,'ville_id','id');
+        return $this->belongsTo('App\Models\Ville','ville_id','id');
     }
 
     public function typeprojet() {
-        return $this->belongsTo(TypeProjet::class,'typeprojet_id','id');
+        return $this->belongsTo('App\Models\TypeProjet','typeprojet_id','id');
     }
 
     public function traitementaeffectuer() {
-        return $this->belongsTo(EtapeProjetFinancement::class,'traitementaeffectuer_id','id');
+        return $this->belongsTo('App\Models\EtapeProjetFinancement','traitementaeffectuer_id','id');
     }
 
     public function statutprojet() {
-        return $this->belongsTo(StatutProjet::class,'statut_id','id');
+        return $this->belongsTo('App\Models\StatutProjet','statut_id','id');
     }
 
     public function divisionregionaleaej() {
-        return $this->belongsTo(AgenceRegionale::class,'divisionregionaleaej_id','id');
+        return $this->belongsTo('App\Models\AgenceRegionale','divisionregionaleaej_id','id');
     }
 
     public function commune() {
-        return $this->belongsTo(Commune::class,'commune_id','id');
+        return $this->belongsTo('App\Models\Commune','commune_id','id');
     }
 
     public function typeprogramme() {
-        return $this->belongsTo(TypeProgramme::class,'typeprogramme_id','id');
+        return $this->belongsTo('App\Models\TypeProgramme','typeprogramme_id','id');
     }
 
     public function district() {
-        return $this->belongsTo(District::class,'district_id','id');
+        return $this->belongsTo('App\Models\District','district_id','id');
     }
 
     public function derniertraitement() {
-        return $this->belongsTo(ProjetEtEtape::class,'derniertraitement_id','id');
+        return $this->belongsTo('App\Models\ProjetEtEtape','derniertraitement_id','id');
     }
 
     public function statut(){
-        return $this->belongsTo(StatutProjet::class,'statut_id','id');
+        return $this->belongsTo('App\Models\StatutProjet','statut_id','id');
     }
 
     public function etapefinancement(){
-        return $this->belongsTo(ProjetEtEtape::class,'projetfinancement_id','id');
+        return $this->belongsTo('App\Models\ProjetEtEtape','projetfinancement_id','id');
     }
 
     public function etapesdevalidation(){
-        return $this->hasMany(ProjetEtEtape::class,'projetfinancement_id','id');
+        return $this->hasMany('App\Models\ProjetEtEtape','projetfinancement_id','id');
     }
 
 }

@@ -2,17 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OffreFormationDemandeur extends Model
 {
-    use HasFactory;
 
     public $table = 'digit_demandeur_formation_demandeur';
 
     public function formation(){
-        return $this->belongsTo(Formation::class,'formation_id','id');
+        return $this->belongsTo('App\Models\Formation','formation_id','id');
     }
 
     public function getPostulantStatutAttribute() {

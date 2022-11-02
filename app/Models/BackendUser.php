@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class BackendUser extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
+    use HasApiTokens, Notifiable, HasRoles, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -71,11 +70,11 @@ class BackendUser extends Authenticatable
 
     public function demandeurs()
     {
-        return  $this->hasMany(DemandeurEmploi::class, 'id','conseilleremploi_id');
+        return  $this->hasMany('App\Models\DemandeurEmploi', 'id','conseilleremploi_id');
     }
 
     public function agenceregionale(){
-        return $this->belongsTo(AgenceRegionale::class, 'divisionregionaleaej_id','id');
+        return $this->belongsTo('App\Models\AgenceRegionale', 'divisionregionaleaej_id','id');
     }
 
     static function demandeursByConseiller()
@@ -91,6 +90,6 @@ class BackendUser extends Authenticatable
     }
 
     public function backendrole(){
-        return $this->belongsTo(BackendUserRole::class,'role_id','id');
+        return $this->belongsTo('App\Models\BackendUserRole','role_id','id');
     }
 }

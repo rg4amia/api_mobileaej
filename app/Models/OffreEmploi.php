@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OffreEmploi extends Model
@@ -28,31 +27,30 @@ class OffreEmploi extends Model
         ],
     ];
 */
-    use HasFactory;
     protected $table = 'digit_offreformation_offreemploi';
 
     public function typecontrat(){
-        return $this->belongsTo(TypeContrat::class,'typecontrat_id','id');
+        return $this->belongsTo('App\Models\TypeContrat','typecontrat_id','id');
     }
 
     public function diplome(){
-        return $this->belongsTo(Diplome::class,'diplome_id','id');
+        return $this->belongsTo('App\Models\Diplome','diplome_id','id');
     }
 
     public function agenceregionale(){
-        return $this->belongsTo(AgenceRegionale::class,'divisionregionaleaej_id','id');
+        return $this->belongsTo('App\Models\AgenceRegionale','divisionregionaleaej_id','id');
     }
 
     public function sexe(){
-        return $this->belongsToMany(Sexe::class,'digit_offreformation_sexe_emploi','emploi_id','sexe_id');
+        return $this->belongsToMany('App\Models\Sexe','digit_offreformation_sexe_emploi','emploi_id','sexe_id');
     }
 
     public function niveauetude(){
-        return $this->belongsTo(NiveauEtude::class,'niveauetude_id','id');
+        return $this->belongsTo('App\Models\NiveauEtude','niveauetude_id','id');
     }
 
     public function specialites(){
-        return $this->belongsToMany(SecteurActivite::class,'digit_offreformation_specialite_offreemploi','offreemploi_id','specialite_id');
+        return $this->belongsToMany('App\Models\SecteurActivite','digit_offreformation_specialite_offreemploi','offreemploi_id','specialite_id');
     }
 
 }

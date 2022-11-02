@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ProjetEtEtape extends Model
 {
-    use HasFactory;
 
     /**
      * @var string The database table used by the model.
@@ -20,15 +18,15 @@ class ProjetEtEtape extends Model
         ];*/
 
     public function etape() {
-        return $this->belongsTo(EtapeProjetFinancement::class,'etapeprojetfinancement_id','id');
+        return $this->belongsTo('App\Models\EtapeProjetFinancement','etapeprojetfinancement_id','id');
     }
 
     public function projetfinancement() {
-        return $this->belongsTo(ProjetFinancement::class,'projetfinancement_id','id');
+        return $this->belongsTo('App\Models\ProjetFinancement','projetfinancement_id','id');
     }
 
     public function analyse(){
-        return $this->hasMany(Analyse::class,'etape_id');
+        return $this->hasMany('App\Models\Analyse','etape_id');
     }
 
 }

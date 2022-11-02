@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class DemandeurEmploi extends Model
 {
-    use HasFactory;
+
     protected $table = 'digit_demandeur_demandeuremploi';
 
     /**
@@ -38,43 +37,43 @@ class DemandeurEmploi extends Model
     //'niveauetude' => ['Digit\Parametrage\Models\NiveauEtudeModel', 'key' => 'niveauetude_id', 'otherKey' => 'id'],
 
     public function niveauetude(){
-        return $this->belongsTo(NiveauEtude::class,'niveauetude_id','id');
+        return $this->belongsTo('App\Models\NiveauEtude','niveauetude_id','id');
     }
 
     public function agenceregionale(){
-        return $this->belongsTo(AgenceRegionale::class,'divisionregionaleaej_id','id');
+        return $this->belongsTo('App\Models\AgenceRegionale','divisionregionaleaej_id','id');
     }
 
     public function guichetemploi(){
-        return $this->belongsTo(GuichetEmploi::class,'guichetemplois_id','id');
+        return $this->belongsTo('App\Models\GuichetEmploi','guichetemplois_id','id');
     }
 
     public function conseilleremploi(){
-        return $this->belongsTo(BackendUser::class,'conseilleremploi_id','id');
+        return $this->belongsTo('App\Models\BackendUser','conseilleremploi_id','id');
     }
 
     public function typepieceidentite(){
-        return $this->belongsTo(TypePieceIdentite::class,'typepieceidentite_id','id');
+        return $this->belongsTo('App\Models\TypePieceIdentite','typepieceidentite_id','id');
     }
 
     public function diplome(){
-        return $this->belongsTo(Diplome::class,'diplome_id','id');
+        return $this->belongsTo('App\Models\Diplome','diplome_id','id');
     }
 
     public function specialite(){
-        return $this->belongsTo(SpecialiteDiplome::class,'specialite_id','id');
+        return $this->belongsTo('App\Models\SpecialiteDiplome','specialite_id','id');
     }
 
     public function statudemandeur(){
-        return $this->belongsTo(Statutdemandeur::class,'statudemandeur_id','id');
+        return $this->belongsTo('App\Models\Statutdemandeur','statudemandeur_id','id');
     }
 
     public function soussecteuractivite(){
-        return $this->belongsTo(SousSecteur::class,'soussecteuractivite_id','id');
+        return $this->belongsTo('App\Models\SousSecteur','soussecteuractivite_id','id');
     }
 
     public function uniteexperience(){
-        return $this->belongsTo(UniteExperience::class,'uniteexperience_id','id');
+        return $this->belongsTo('App\Models\UniteExperience','uniteexperience_id','id');
     }
 
     public function photoProfile()
@@ -115,7 +114,7 @@ class DemandeurEmploi extends Model
 
 
     public function user(){
-        return $this->belongsTo(User::class,'id', 'demandeuremploi_id');
+        return $this->belongsTo('App\Models\User','id', 'demandeuremploi_id');
     }
 
 }

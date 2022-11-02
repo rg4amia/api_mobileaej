@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Formation extends Model
 {
-    use HasFactory;
     protected $table = 'digit_offreformation_formation';
 
 
@@ -23,30 +21,30 @@ class Formation extends Model
     ];*/
 
     public function diplome(){
-        return $this->belongsTo(Diplome::class,'diplome_id');
+        return $this->belongsTo('App\Models\Diplome','diplome_id');
     }
 
     public function typeformation()
     {
-        return $this->belongsTo(TypeFormation::class,'typeformation_id');
+        return $this->belongsTo('App\Models\TypeFormation','typeformation_id');
     }
 
     public function categorieformation()
     {
-        return $this->belongsTo(CategorieFormation::class,'categorieformation_id','id');
+        return $this->belongsTo('App\Models\CategorieFormation','categorieformation_id','id');
     }
 
     public function niveauetude()
     {
-        return $this->belongsTo(NiveauEtude::class,'niveauetude_id');
+        return $this->belongsTo('App\Models\NiveauEtude','niveauetude_id');
     }
 
     public function secteuractivite()
     {
-        return $this->belongsTo(SecteurActivite::class,'secteuractivite_id');
+        return $this->belongsTo('App\Models\SecteurActivite','secteuractivite_id');
     }
 
     public function sexe(){
-        return $this->belongsToMany(Sexe::class,'digit_offreformation_sexe_formation','formation_id','sexe_id');
+        return $this->belongsToMany('App\Models\Sexe','digit_offreformation_sexe_formation','formation_id','sexe_id');
     }
 }

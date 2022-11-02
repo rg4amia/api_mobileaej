@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class FavorisOffreEmploi extends Model
 {
-    use HasFactory;
 
     protected $fillable= [
         'diplome','niveauetude',
@@ -26,6 +24,6 @@ class FavorisOffreEmploi extends Model
     ];
 
     public function specialite(){
-        return $this->belongsToMany(SecteurActivite::class,'favoris_offre_emploi_secteur_actvites','favoris_id','secteuractivite_id');
+        return $this->belongsToMany('App\Models\SecteurActivite','favoris_offre_emploi_secteur_actvites','favoris_id','secteuractivite_id');
     }
 }

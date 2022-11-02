@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\Mobile\ResetPasswordByMailJob;
 use App\Mail\ResetPasswordCodeMail;
 use App\Models\DemandeurEmploi;
-use App\Models\User;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

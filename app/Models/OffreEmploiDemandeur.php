@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OffreEmploiDemandeur extends Model
 {
-    use HasFactory;
     public $demandeur;
 
     public $table = 'digit_demandeur_offreemploi_demandeur';
@@ -43,11 +41,11 @@ class OffreEmploiDemandeur extends Model
     //    ];
 
     public function offreemploi(){
-        return  $this->belongsTo(OffreEmploi::class,'offreemploi_id','id');
+        return  $this->belongsTo('App\Models\OffreEmploi','offreemploi_id','id');
     }
 
     public function demandeur(){
-        return  $this->belongsTo(DemandeurEmploi::class,'demandeur_id','id');
+        return  $this->belongsTo('App\Models\DemandeurEmploi','demandeur_id','id');
     }
 
     public function listeDemandesEmploi(){
