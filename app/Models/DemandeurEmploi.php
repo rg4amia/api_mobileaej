@@ -18,7 +18,8 @@ class DemandeurEmploi extends Model
         'typepieceidentite_id','diplome_id','specialite_id','divisionregionaleaej_id',
         'villeresidence_id','nomdupere','nomdelamere','situationmatrimoniale_id','statudemandeur_id',
         'typesituationhandicap_id','lieuhabitation_id','dateinscription','lieunaissance_id',
-        'datenaissance','numerocni','matriculeaej','cvdemandeur','ancienphoto','diplomefile','cnifile','cvfile', 'guichetemplois_id', 'dup_competence'
+        'datenaissance','numerocni','matriculeaej','cvdemandeur','ancienphoto','diplomefile','cnifile',
+        'cvfile', 'guichetemplois_id', 'dup_competence','onesignale_id'
     ];
 
     /**

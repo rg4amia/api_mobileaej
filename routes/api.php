@@ -48,6 +48,9 @@ Route::middleware('auth:sanctum')->group(function() {
         Route::get('projet-financement', [SuivieDemandeController::class,'suivieProjetFinancement']);
     });
 
+    //add user id one signal
+    Route::post('add_userid_onesignal', [AuthenticateController::class, 'addUserIdOneSignal']);
+
     //conseiller emploi
     Route::post('v1.0/sendmail-demandeur-to-mail',[DemandeurToConseillerEmploi::class,'sendMail']);
 

@@ -170,6 +170,9 @@ class AuthenticateController extends Controller
         }
     }
 
+
+
+
     public function changeResetPassword(Request $request){
 
        /* $rules = array(
@@ -208,5 +211,21 @@ class AuthenticateController extends Controller
                 "message" => "Une erreur c'est produite pendant la modification"
             ]);
         }
+    }
+
+    public function addUserIdOneSignal(Request $request){
+
+        $demandeur = Auth::user()->demandeur;
+
+        $demandeurModel = DemandeurEmploi::find($demandeur->id);
+        $demandeurModel->onesignale_id = $request->onesignale_id;
+        $demandeurModel->save();
+
+        return response()->json(
+            [
+                "status"     => "success",
+                "message"    => "Votre mot de passe modifié avec succès",
+            ]
+        );
     }
 }
