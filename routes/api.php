@@ -49,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     //add user id one signal
-    Route::post('add_userid_onesignal', [AuthenticateController::class, 'addUserIdOneSignal']);
+    Route::post('v1.0/add_userid_onesignal', [AuthenticateController::class, 'addUserIdOneSignal']);
 
     //conseiller emploi
     Route::post('v1.0/sendmail-demandeur-to-mail',[DemandeurToConseillerEmploi::class,'sendMail']);
