@@ -56,7 +56,7 @@ class AuthenticateController extends Controller
             ],401);
 
         }
-
+  
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
             $user  = Auth::user();
