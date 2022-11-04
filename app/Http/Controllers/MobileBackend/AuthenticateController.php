@@ -8,6 +8,7 @@ use App\Mail\ResetPasswordCodeMail;
 use App\Models\DemandeurEmploi;
 use App\Models\OffreEmploiDemandeur;
 use App\Models\OffreFormationDemandeur;
+use App\Models\ProjetFinancement;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class AuthenticateController extends Controller
 {
@@ -56,7 +58,7 @@ class AuthenticateController extends Controller
             ],401);
 
         }
-  
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
             $user  = Auth::user();
@@ -66,13 +68,15 @@ class AuthenticateController extends Controller
 
             $nbreemploipostulation = OffreEmploiDemandeur::where('demandeur_id', $demandeur->id)->count();
             $nbreformationpostulation = OffreFormationDemandeur::where('demandeur_id', $demandeur->id)->count();
+            $nbreprojet = ProjetFinancement::where('demandeur_id', $demandeur->id)->count();
 
             return response()->json([
                 'success'                   => true,
                 'token'                     => $token,
                 'user'                      => Auth::user(),
-                'nbreformationpostulation'  => $nbreformationpostulation,
-                'nbreemploipostulation'     => $nbreemploipostulation,
+                'nbreformation'             => $nbreformationpostulation,
+                'nbreemploi'                => $nbreemploipostulation,
+                'nbreprojet'                => $nbreprojet,
                 'demandeur'                 => $demandeur,
                 'profile'                   => $demandeur->photoProfile()
             ],200);
