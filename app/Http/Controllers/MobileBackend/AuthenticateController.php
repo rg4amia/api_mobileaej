@@ -226,17 +226,26 @@ class AuthenticateController extends Controller
 
     public function addUserIdOneSignal(Request $request){
 
-        $demandeur = Auth::user()->demandeur;
+        try {
+            $demandeur = Auth::user()->demandeur;
 
-        $demandeurModel = DemandeurEmploi::find($demandeur->id);
-        $demandeurModel->onesignale_id = $request->onesignale_id;
-        $demandeurModel->save();
+            $demandeurModel = DemandeurEmploi::find($demandeur->id);
+            $demandeurModel->onesignale_id = $request->onesignale_id;
+            $demandeurModel->save();
 
-        return response()->json(
-            [
-                "status"     => "success",
-                "message"    => "Votre mot de passe modifié avec succès",
-            ]
-        );
+            return response()->json(
+                [
+                    "status"     => "success",
+                    "message"    => "Votre mot de passe modifié avec succès",
+                ]
+            );
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    "status"     => "failed",
+                    "message"    => $e->getMessage(),
+                ]
+            );
+        }
     }
 }
