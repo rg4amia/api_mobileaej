@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Jobs\Mobile\ResetPasswordByMailJob;
 use App\Mail\ResetPasswordCodeMail;
 use App\Models\DemandeurEmploi;
+use App\Models\OffreEmploiDemandeur;
+use App\Models\OffreFormationDemandeur;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -62,12 +64,17 @@ class AuthenticateController extends Controller
 
             $demandeur = DemandeurEmploi::with('agenceregionale','niveauetude','typepieceidentite','diplome','specialite','statudemandeur','guichetemploi','conseilleremploi')->find($user->demandeuremploi_id);
 
+            $nbreemploipostulation = OffreEmploiDemandeur::where('demandeur_id', $demandeur->id)->count();
+            $nbreformationpostulation = OffreFormationDemandeur::where('demandeur_id', $demandeur->id)->count();
+
             return response()->json([
-                'success'   => true,
-                'token'     => $token,
-                'user'      => Auth::user(),
-                'demandeur' => $demandeur,
-                'profile'    => $demandeur->photoProfile()
+                'success'                   => true,
+                'token'                     => $token,
+                'user'                      => Auth::user(),
+                'nbreformationpostulation'  => $nbreformationpostulation,
+                'nbreemploipostulation'     => $nbreemploipostulation,
+                'demandeur'                 => $demandeur,
+                'profile'                   => $demandeur->photoProfile()
             ],200);
 
         } else {
