@@ -484,11 +484,14 @@ class OffreEmploiController extends Controller
 
                         $contenu    = 'Votre demande a été prise en compte ! Merci.';
                         $titre      = 'Postulation a l\'offre '. $offreemplois->noreference;
-                        $client = new \GuzzleHttp\Client();
+
+                        sendByUser(Auth::user()->demandeur->onesignale_id, $contenu,$titre);
+
+                        /* $client = new \GuzzleHttp\Client(); */
                         //$data = \request('id');
                         //dd($data);    "include_player_ids":["'. $data.'"],
 
-                        $response = $client->request('POST', 'https://onesignal.com/api/v1/notifications', [
+                       /*  $response = $client->request('POST', 'https://onesignal.com/api/v1/notifications', [
                             'body' => '{
                             "app_id" : "84bfcfa5-f200-461d-99af-f46c1de78bf7",
                              "included_segments":["Subscribed Users"],
@@ -501,7 +504,7 @@ class OffreEmploiController extends Controller
                                 'Authorization' => 'Basic OTNmZTczZGMtYjYzNi00NDM3LTg3NmMtZTY0NDM1Y2JkMjA5',
                                 'Content-Type' => 'application/json',
                             ],
-                            ]);
+                            ]); */
                         return response()->json(["status" => "success", "message" => "Votre demande a été prise en compte !"],200);
                     }
                 }

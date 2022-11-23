@@ -29,7 +29,7 @@ Route::post('/auth/login', [AuthenticateController::class, 'login']);
 Route::post('/auth/reset-password',[AuthenticateController::class, 'resetPassword']);
 Route::post('auth/verif-reset-password',[AuthenticateController::class, 'verifResetPassword']);
 Route::post('auth/change-reset-password',[AuthenticateController::class, 'changeResetPassword']);
-Route::get('send/notif',[OneSignalManageController::class,'sendNotifcationPush']);
+Route::get('send/notif',[OneSignalManageController::class,'sendByUser']);
 Route::get('v1.0/list-agence-regionale',[AgenceRegionalController::class,'index']);
 Route::get('v1.0/load-projet-parameter',[ProjetFinancementController::class,'loadDataParametre']);
 Route::get('v1.0/filter-offre-emplois', [OffreEmploiController::class,'specialiteOffreEmploi']);

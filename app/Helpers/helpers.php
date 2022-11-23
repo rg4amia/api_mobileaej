@@ -9,7 +9,29 @@
 
 use App\Models\Formation;
 use Illuminate\Support\Facades\DB;
+use OneSignal;
 
+
+if (!function_exists('sendByUser')) {
+    function sendByUser($userId,$message,$titre){
+        $params = [];
+        $params['include_player_ids'] = [$userId];
+
+        $contents = [
+            "fr" => $message,
+        ];
+
+        $headings = [
+            "fr" => $titre,
+        ];
+        $params['contents'] = $contents;
+        $params['headings'] = $headings;
+        //$params['delayed_option'] = "timezone"; // Will deliver on user's timezone
+        //$params['delivery_time_of_day'] = "17:05PM"; // Delivery time
+        OneSignal::sendNotificationCustom($params);
+        return [true];
+    }
+}
 
 if( ! function_exists('sendNotificationAllUser') )
 {

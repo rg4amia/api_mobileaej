@@ -22,6 +22,11 @@ class DemandeurEmploi extends Model
         'cvfile', 'guichetemplois_id', 'dup_competence','onesignale_id'
     ];
 
+
+    protected $cast = [
+        'onesignale_id' => 'array'
+    ];
+
     /**
      * @var array List of attribute names which should be set to null when empty.
      */
@@ -34,6 +39,7 @@ class DemandeurEmploi extends Model
         'handicapdemandeur'
     ];
     */
+
 
     //'niveauetude' => ['Digit\Parametrage\Models\NiveauEtudeModel', 'key' => 'niveauetude_id', 'otherKey' => 'id'],
 

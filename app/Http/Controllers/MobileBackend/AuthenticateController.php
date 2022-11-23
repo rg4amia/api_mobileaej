@@ -227,11 +227,22 @@ class AuthenticateController extends Controller
     public function addUserIdOneSignal(Request $request){
 
         try {
+           // $onesignalId = array();
             $demandeur = Auth::user()->demandeur;
 
             $demandeurModel = DemandeurEmploi::find($demandeur->id);
-            $demandeurModel->onesignale_id = $request->onesignale_id;
-            $demandeurModel->save();
+            $onesignalId = json_decode($demandeurModel->onesignale_id);
+
+            if ($onesignalId) {
+                array_push($onesignalId, $request->onesignale_id);
+                $data['onesignale_id'] =  $onesignalId;
+            } else {
+                $data['onesignale_id'] = [(string)$request->onesignale_id];
+            }
+
+            $demandeurModel->update($data);
+
+            Log::info($demandeurModel);
 
             return response()->json(
                 [
@@ -239,13 +250,16 @@ class AuthenticateController extends Controller
                     "message"    => "Votre mot de passe modifié avec succès",
                 ]
             );
+
         } catch (\Exception $e) {
+
             return response()->json(
                 [
                     "status"     => "failed",
                     "message"    => $e->getMessage(),
                 ]
             );
+
         }
     }
 }
