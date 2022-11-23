@@ -9,7 +9,6 @@
 
 use App\Models\Formation;
 use Illuminate\Support\Facades\DB;
-use OneSignal;
 
 
 if (!function_exists('sendByUser')) {
@@ -28,7 +27,7 @@ if (!function_exists('sendByUser')) {
         $params['headings'] = $headings;
         //$params['delayed_option'] = "timezone"; // Will deliver on user's timezone
         //$params['delivery_time_of_day'] = "17:05PM"; // Delivery time
-        OneSignal::sendNotificationCustom($params);
+       // OneSignal::sendNotificationCustom($params);
         return [true];
     }
 }
